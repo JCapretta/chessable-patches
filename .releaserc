@@ -1,11 +1,5 @@
 {
-  "branches": [
-    "main",
-    {
-      "name": "dev",
-      "prerelease": true
-    }
-  ],
+  "branches": ["main"],
   "plugins": [
     [
         "@semantic-release/commit-analyzer", {
@@ -45,22 +39,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "./gradlew generatePatchesList \
-          && jq '.version=\"${nextRelease.version}\"' patches-list.json > patches-list.json.tmp && mv patches-list.json.tmp patches-list.json \
-          && python3 .github/scripts/generate_patches_readme.py $GITHUB_REPOSITORY $GITHUB_REF_NAME patches-list.json README.md"
-      }
-    ],
-    [
-      "@semantic-release/git",
-      {
-        "assets": [
-          "CHANGELOG.md",
-          "gradle.properties",
-          "patches-bundle.json",
-          "patches-list.json",
-          "README.md"
-        ],
-        "message": "chore: Release v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        "prepareCmd": "./gradlew clean && ./gradlew :patches:buildAndroid generatePatchesList && jq '.version=\"${nextRelease.version}\"' patches-list.json > patches-list.json.tmp && mv patches-list.json.tmp patches-list.json && python3 .github/scripts/generate_patches_readme.py $GITHUB_REPOSITORY $GITHUB_REF_NAME patches-list.json README.md"
       }
     ],
     [
@@ -72,13 +51,6 @@
           }
         ],
         "successComment": false
-      }
-    ],
-    [
-      "@cleyrop-org/semantic-release-backmerge",
-      {
-        "backmergeBranches": [{"from": "main", "to": "dev"}],
-        "clearWorkspace": true
       }
     ]
   ]

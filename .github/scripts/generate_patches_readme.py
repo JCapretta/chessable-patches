@@ -144,8 +144,13 @@ def spoiler(label, count, targets, tbl, expanded=False):
 
 def build_content(expanded=False):
     """Build the full generated patches section."""
+    version_label = (
+        f"[v{ver}](https://github.com/{owner}/{repo}/releases/tag/v{ver})"
+        if branch == "main"
+        else "Development build (unreleased)"
+    )
     lines = [
-        f"> **[v{ver}](https://github.com/{owner}/{repo}/releases/tag/v{ver})**"
+        f"> **{version_label}**"
         f"&nbsp;&nbsp;•&nbsp;&nbsp;`{branch}`&nbsp;&nbsp;•&nbsp;&nbsp;"
         f"{total} patches total"
     ]

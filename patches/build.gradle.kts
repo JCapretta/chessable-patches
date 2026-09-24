@@ -1,12 +1,11 @@
-group = "app.template"
+group = "com.jcapretta.chessable"
 
 patches {
-    // TODO: Update this section with your project details.
     about {
-        name = "UserXYZ Patches"
-        description = "Patches for apps I like"
-        source = "git@github.com:UserXYZ/morphe-patches.git"
-        author = "Awesome dev"
+        name = "Chessable Patches"
+        description = "Focused usability patches for Chessable"
+        source = "https://github.com/JCapretta/chessable-patches"
+        author = "JCapretta"
         contact = "na"
         website = "na"
         license = "GPLv3"
@@ -18,6 +17,9 @@ patches {
 val patchListGeneratorClasspath = configurations.create("patchListGeneratorClasspath")
 
 dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.12.2"))
+    testImplementation(kotlin("test-junit5"))
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     compileOnly(libs.gson)
     patchListGeneratorClasspath(libs.gson)
 }
@@ -36,4 +38,8 @@ tasks {
     publish {
         dependsOn("generatePatchesList")
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

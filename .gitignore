@@ -128,3 +128,15 @@ node_modules/
 # Ignore IDEA files
 .idea/
 local.properties
+
+.worktrees/
+.task/
+.local/
+*.apkm
+*.xapk
+*.jks
+*.keystore
+*.hbc
+*.hasm
+.env*
+__pycache__/
