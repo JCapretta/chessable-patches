@@ -6,11 +6,24 @@
 - Original app reaches the email/password login screen.
 - Static inspection located the folder and random-review restrictions described in
   [patch-design.md](patch-design.md).
+- [CI run 35977727563](https://github.com/JCapretta/chessable-patches/actions/runs/35977727563)
+  passed all 11 tests with zero skips and built the bundle on commit `7bac646`.
+- Morphe Desktop 1.17.0 applied the bundle and signed the test APK successfully.
+- An independent archive comparison verified exactly the five intended edits and
+  checksum update. The five functions also disassemble successfully with hermes-dec.
+- A modified bundle with a valid checksum was rejected by Morphe; no output APK
+  was produced.
+- Patched app installs and reaches the same login screen on a separate fresh
+  headless Android 15 ARM64 emulator, with an empty crash log.
+- Patched bundle SHA-256:
+  `4ab62cf227a5696408d1f48ca72c1902143133a69b977298c35a20906b386663`.
 - Authenticated baseline, queue behavior, and server persistence: **pending test-account access**.
 - PRO-account regressions: **not tested; no PRO account supplied**.
 
 These observations do not establish that the feature works end to end. CI results
 cover the patch engine and compilation, not Chessable's authenticated service.
+Smoke checks were performed on 2026-09-24. Screenshots, APKs, and patcher reports
+are retained locally, not published with the source.
 
 ## Automated checks
 

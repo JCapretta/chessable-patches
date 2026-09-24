@@ -19,6 +19,14 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Validate release configuration
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          node --input-type=module -e 'import fs from "node:fs"; const c = JSON.parse(fs.readFileSync(".releaserc")); for (const p of c.plugins) await import(Array.isArray(p) ? p[0] : p);'
       - name: Check, test, and build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

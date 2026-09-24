@@ -139,3 +139,4 @@ local.properties
 *.hbc
 *.hasm
 .env*
+__pycache__/
