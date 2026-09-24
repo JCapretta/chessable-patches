@@ -26,6 +26,11 @@ valid only for the fingerprint above. No app-wide entitlement getters are change
 | Display the native random switch | #27189 `RandomReviewSetting` | `0x798417` | Test the already-validated review eligibility register instead of `proSettingsEnabled`. The earlier review-mode and single-course guards remain. |
 | Honor the stored random preference | #25860 `getIsReviewAll_random` | `0x770f64` | Always read the user-local preference; preserve the false default. |
 | Reject a disappeared folder | #25800, generator behind `getReviewAll` | `0x76fbda` | Throw the existing error string (#54979) instead of clearing the folder ID and continuing globally. |
+| Keep folders reachable on fresh accounts | #27966 `renderItem`; `DashboardFoldersButton`, `ProTrialWidget` | `0x7afb89` | Replace the trial-banner branch with a register-preserving `Mov`. The native Folders entry is rendered; the surrounding folder-visibility checks remain. |
+
+Authenticated testing reproduced the trial banner replacing the Folders entry on
+the fresh account, even after courses were added to a folder. Restoring this entry
+is necessary to reach folder review. Upgrade controls elsewhere remain native.
 
 The missing-folder change rejects the loading promise through the existing error
 path. The exact error presentation remains part of the authenticated acceptance test.

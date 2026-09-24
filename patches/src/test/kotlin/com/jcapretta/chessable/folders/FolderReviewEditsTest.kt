@@ -46,6 +46,17 @@ class FolderReviewEditsTest {
     }
 
     @Test
+    fun `trial eligibility does not replace folder navigation`() {
+        val edit = FolderReviewEdits.edits[5]
+        assertEquals(40, run(edit.original, mutableMapOf(21 to true)))
+        for (trialEligible in listOf(false, true)) {
+            val registers = mutableMapOf<Int, Any?>(21 to trialEligible)
+            assertEquals(3, run(edit.replacement, registers))
+            assertEquals(trialEligible, registers[21])
+        }
+    }
+
+    @Test
     fun `missing folder rejects rather than clearing folder restriction`() {
         val error = assertFailsWith<IllegalStateException> {
             run(FolderReviewEdits.edits[4].replacement, mutableMapOf(7 to null))

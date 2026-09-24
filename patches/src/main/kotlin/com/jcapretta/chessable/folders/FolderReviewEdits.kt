@@ -21,6 +21,8 @@ internal object FolderReviewEdits {
         // A missing folder must reject the loading promise, never clear folderLimit.id.
         // LoadConstString r7, 54979; Throw r7; LoadConstUndefined r7 (unreachable padding).
         edit("Missing folder guard", 0x76fbda, "3b08070152008e4c", "7307c3d65f077607"),
+        // Keep the native Folders entry instead of replacing it with a trial banner.
+        edit("Folder navigation", 0x7afb89, "902815", "081515"),
     )
 
     private val patch = HermesEdits(ORIGINAL_SHA256, edits)

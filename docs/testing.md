@@ -8,19 +8,35 @@
   [patch-design.md](patch-design.md).
 - [CI run 35977727563](https://github.com/JCapretta/chessable-patches/actions/runs/35977727563)
   passed all 11 tests with zero skips and built the bundle on commit `7bac646`.
+- Local Java 21 verification passes all 12 tests with zero failures or skips,
+  including the additional trial-banner navigation regression test.
 - Morphe Desktop 1.17.0 applied the bundle and signed the test APK successfully.
-- An independent archive comparison verified exactly the five intended edits and
-  checksum update. The five functions also disassemble successfully with hermes-dec.
+- An independent archive comparison verified exactly the six intended edits and
+  checksum update. All six functions also disassemble successfully with hermes-dec.
 - A modified bundle with a valid checksum was rejected by Morphe; no output APK
   was produced.
 - Patched app installs and reaches the same login screen on a separate fresh
   headless Android 15 ARM64 emulator, with an empty crash log.
 - Patched bundle SHA-256:
-  `4ab62cf227a5696408d1f48ca72c1902143133a69b977298c35a20906b386663`.
+  `b21c83592645c3eb4f6e953654bc66ca8d1861e2ec7280b8dbdfa84cc9f1f922`.
 - Original app signs into the dedicated fresh account and completes onboarding.
-  Free Beginner Starter Kit is enrolled; preparation of review material is underway.
-- Authenticated folder baseline, queue behavior, and server persistence:
-  **pending prepared due reviews**.
+  Both original and locally built patched apps authenticate successfully.
+- Live testing found the original dashboard replaces Folders with a trial banner
+  on this fresh account. The added navigation edit restores the native entry.
+- Folder test contains Beginner Starter Kit (course 295333) and Everything You
+  Need to Know About Chess (193039). Basic Endgames (6371) stays outside it.
+  An Empty test folder has no courses. Membership survives app restart.
+- Original-app learning is visible in the patched app: course counts are 7/60,
+  2/92, and 1/194 respectively. Some starter-course entries are introductory reading.
+  Actual tactical and endgame recall exercises were also completed.
+- Empty folder displays its native empty state. The two-course folder lists only
+  its members and has no review action while nothing is due. Light-theme screens
+  were inspected and retained privately.
+- Account remains non-PRO; no trial was activated. Native Dark selection persisted
+  but the UI stayed light after restart. Dark-theme rendering is **not validated**.
+- Due-review queue behavior, random preference persistence, and review completion
+  persistence: **pending real due reviews**. All three courses currently have zero
+  due reviews. Learning synchronization is not evidence of review synchronization.
 - PRO-account regressions: **not tested; no PRO account supplied**.
 
 These observations do not establish that the feature works end to end. CI results
