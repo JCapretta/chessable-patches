@@ -17,7 +17,10 @@
   headless Android 15 ARM64 emulator, with an empty crash log.
 - Patched bundle SHA-256:
   `4ab62cf227a5696408d1f48ca72c1902143133a69b977298c35a20906b386663`.
-- Authenticated baseline, queue behavior, and server persistence: **pending test-account access**.
+- Original app signs into the dedicated fresh account and completes onboarding.
+  Free Beginner Starter Kit is enrolled; preparation of review material is underway.
+- Authenticated folder baseline, queue behavior, and server persistence:
+  **pending prepared due reviews**.
 - PRO-account regressions: **not tested; no PRO account supplied**.
 
 These observations do not establish that the feature works end to end. CI results
