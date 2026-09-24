@@ -1,11 +1,5 @@
 {
-  "branches": [
-    "main",
-    {
-      "name": "dev",
-      "prerelease": true
-    }
-  ],
+  "branches": ["main"],
   "plugins": [
     [
         "@semantic-release/commit-analyzer", {
@@ -51,19 +45,6 @@
       }
     ],
     [
-      "@semantic-release/git",
-      {
-        "assets": [
-          "CHANGELOG.md",
-          "gradle.properties",
-          "patches-bundle.json",
-          "patches-list.json",
-          "README.md"
-        ],
-        "message": "chore: Release v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-      }
-    ],
-    [
       "@semantic-release/github",
       {
         "assets": [
@@ -72,13 +53,6 @@
           }
         ],
         "successComment": false
-      }
-    ],
-    [
-      "@cleyrop-org/semantic-release-backmerge",
-      {
-        "backmergeBranches": [{"from": "main", "to": "dev"}],
-        "clearWorkspace": true
       }
     ]
   ]
