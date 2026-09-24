@@ -2,13 +2,13 @@
 
 Focused Android usability patches for Chessable, distributed as a third-party Morphe source.
 
-**Experimental: authenticated folder-review and server-persistence testing is pending. No verified release is published yet.**
+Authenticated non-PRO folder review and server-persistence checks passed on Android 15. See [test evidence and coverage limits](docs/testing.md).
 
 The first patch restores native folder reviews and the existing random/sequential review setting on Chessable 3.0.4 (118333). It reviews due material using the app's own scheduling and progress tracking.
 
 ## Installation
 
-After the first verified release, [add this source to Morphe](https://morphe.software/add-source?github=JCapretta/chessable-patches), select the supported original Chessable APK, and enable **Enable folder reviews**.
+[Add this source to Morphe](https://morphe.software/add-source?github=JCapretta/chessable-patches), select the supported original Chessable APK, and enable **Enable folder reviews**.
 
 Open a folder containing due reviews and tap **Review Folder**. During review, use the board settings' **Review All is randomized** switch to mix courses. The native preference is shared with global Review All; its default is unchanged.
 
@@ -34,7 +34,7 @@ The bundle is written to `patches/build/libs/`. Follow [AGENTS.md](AGENTS.md) fo
 
 **🎯 Supported versions:**
 
-| 🧪&nbsp;3.0.4 |
+| 3.0.4 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |

@@ -11,8 +11,9 @@
 The APK contains the complete folder UI and review implementation. `onReviewFolder`
 passes `studyMode: review` and `folderId` to MoveTrainer. The queue loader requests
 `/v1/reviewAllData` and folder membership separately. The existing review selector
-uses the folder's course IDs to filter eligible material. Server acceptance with a
-non-PRO account still needs authenticated testing.
+uses the folder's course IDs to filter eligible material. Live non-PRO testing
+confirms folder scope and server-persisted reviews; see [testing](testing.md) for
+the exact evidence and limitations.
 
 ## Audited changes
 
@@ -33,7 +34,8 @@ the fresh account, even after courses were added to a folder. Restoring this ent
 is necessary to reach folder review. Upgrade controls elsewhere remain native.
 
 The missing-folder change rejects the loading promise through the existing error
-path. The exact error presentation remains part of the authenticated acceptance test.
+path. A live two-client deletion test confirms the native error screen appears without
+falling back to global review.
 
 `HermesEdits` checks the magic, version, file length, footer checksum, edit bounds,
 original instructions, and whole-bundle SHA-256 before writing anything. Known

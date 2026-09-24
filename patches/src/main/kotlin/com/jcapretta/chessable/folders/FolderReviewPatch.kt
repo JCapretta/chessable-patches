@@ -16,7 +16,7 @@ val folderReviewPatch = rawResourcePatch(
             name = "Chessable",
             packageName = "com.chessable.chessable",
             apkFileType = ApkFileType.APK,
-            targets = listOf(AppTarget(version = "3.0.4", isExperimental = true)),
+            targets = listOf(AppTarget(version = "3.0.4", isExperimental = false)),
         ),
     )
 

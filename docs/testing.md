@@ -34,15 +34,48 @@
   were inspected and retained privately.
 - Account remains non-PRO; no trial was activated. Native Dark selection persisted
   but the UI stayed light after restart. Dark-theme rendering is **not validated**.
-- Due-review queue behavior, random preference persistence, and review completion
-  persistence: **pending real due reviews**. All three courses currently have zero
-  due reviews. Learning synchronization is not evidence of review synchronization.
+- Live non-PRO acceptance on 2026-09-25 passed for patch code at
+  `cef5ad7762a99f5d898c753788261e7ecd8bec68`, using the APK and bundle
+  fingerprints above on headless Android 15 ARM64.
+- Initial due variations: Starter Kit 1, Everything 2, Basic Endgames 1.
+  The two-course folder displayed **Review Folder (3)** and opened Starter Kit.
+  Completing it advanced to Everything, without selecting Basic Endgames.
+- Canceling after Starter Kit reduced the folder count to 2. After force-stopping
+  and restarting the app, the completed review remained saved and folder review
+  resumed the two Everything variations. Both completed with 100% accuracy.
+- After completion, neither member course nor its folder offered due review.
+  Refreshing the original, unpatched app independently showed both member courses
+  clear and Basic Endgames still at 1 due variation. Global due count went from
+  4 to 1. No scheduling data or server results were fabricated.
+- The native randomized-review control was editable without PRO. Both enabled and
+  disabled states survived force-stop/restart. Folder review completed while the
+  preference was enabled; sequential review crossed courses earlier in the run.
+  The small sample does not establish a statistical distribution of random order.
+- Global Review All and normal single-course review both opened Basic Endgames.
+  The random switch remained absent in single-course mode, as intended. These
+  entry/cancel regressions did not complete the outside variation.
+- Pausing the control variation removed its due count. Adding its course to the
+  separate test folder produced no folder-review action. Unpausing through the
+  native course page restored **Review Folder (1)**.
+- With the test emulator offline, folder review displayed the native connection
+  error. Restoring connectivity and selecting Retry opened the same folder's
+  Basic Endgames variation.
+- For the missing-folder race, one client held that folder request offline while
+  a second patched client deleted the disposable folder through the native UI.
+  Reconnecting and retrying produced **Oops! Something went wrong. Please try
+  again.** with Go back, rather than falling back to global review. Course data
+  remained intact. The original-app persistence evidence was captured before
+  reusing that emulator as the second patched client.
+- No fatal exception appeared in the patched app's crash buffer. Both emulators
+  were shut down after testing. Private screenshots retain the relevant states.
 - PRO-account regressions: **not tested; no PRO account supplied**.
+- Dark-theme rendering remains **unverified**. Exact next-review timestamps and
+  statistical cross-course randomization were not independently asserted.
 
-These observations do not establish that the feature works end to end. CI results
-cover the patch engine and compilation, not Chessable's authenticated service.
-Smoke checks were performed on 2026-09-24. Screenshots, APKs, and patcher reports
-are retained locally, not published with the source.
+The real folder queue, review persistence, eligibility counts, cancellation,
+restart, preference persistence, and failure handling have authenticated evidence.
+The limitations above are not represented as passed checks. Automated tests cover
+patch integrity and branch semantics, not Chessable's authenticated service.
 
 ## Automated checks
 
