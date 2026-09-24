@@ -9,8 +9,9 @@ Before the first release:
 2. Commit the sanitized results through a task worktree and `ship`. Remove the
    experimental warning and mark the compatibility target verified only after
    those results pass. Continue to state unavailable PRO testing honestly.
-3. Set repository Actions variable `FOLDER_REVIEW_E2E_VERIFIED=true` only after that
-   evidence exists. The Release workflow is skipped while this variable is absent.
+3. Set repository Actions variable `E2E_VERIFIED_SHA` to the full tested `main`
+   commit SHA only after that evidence exists. Release is skipped if this variable
+   is absent or points to another commit.
 4. Enable GitHub Actions to create pull requests in repository workflow permissions.
 5. Dispatch **Release** on `main`. It runs tests/build before semantic-release,
    generates versioned `.mpp` assets, and opens a PR for generated source metadata.
@@ -23,6 +24,6 @@ Do not hand-edit generated metadata or CHANGELOG.md. Release automation owns tho
 files. Never force-push release tags or generated history. Address release issues
 with a new release. Do not start another release before the metadata PR is merged.
 
-Reset the verification variable when changing supported app builds or behavior
-until the new version's authenticated checks pass. Development builds remain
+Every new source commit requires updated acceptance evidence and its own verified
+SHA before release. Development builds remain
 downloadable as CI artifacts without representing a verified release.

@@ -3,10 +3,14 @@ name: Release
 on:
   workflow_dispatch:
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
   release:
     name: Release
-    if: github.ref == 'refs/heads/main' && vars.FOLDER_REVIEW_E2E_VERIFIED == 'true'
+    if: github.ref == 'refs/heads/main' && vars.E2E_VERIFIED_SHA == github.sha
     permissions:
       contents: write
       pull-requests: write
