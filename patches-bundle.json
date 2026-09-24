@@ -1,7 +1,7 @@
 {
-  "created_at": "",
-  "description": "",
-  "download_url": "",
+  "created_at": "2026-09-24T21:58:01",
+  "description": "## 1.0.0 (2026-09-24)\n\n### ✨ New Features\n\n* enable native Chessable folder reviews ([#1](https://github.com/JCapretta/chessable-patches/issues/1)) ([a50bdb4](https://github.com/JCapretta/chessable-patches/commit/a50bdb4933368586faef17c8c29c08d9a65c2729))",
+  "download_url": "https://github.com/JCapretta/chessable-patches/releases/download/v1.0.0/patches-1.0.0.mpp",
   "signature_download_url": "",
-  "version": ""
+  "version": "1.0.0"
 }
