@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/JCapretta/chessable-patches/compare/v1.1.0...v1.2.0) (2026-09-25)
+
+### ✨ New Features
+
+* enable offline downloads for owned course videos ([#5](https://github.com/JCapretta/chessable-patches/issues/5)) ([6dacffd](https://github.com/JCapretta/chessable-patches/commit/6dacffd912e232db4c3a8613c01ff353e895e1a3))
+
 ## [1.1.0](https://github.com/JCapretta/chessable-patches/compare/v1.0.0...v1.1.0) (2026-09-25)
 
 ### ✨ New Features

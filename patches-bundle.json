@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-25T01:35:38",
-  "description": "## [1.1.0](https://github.com/JCapretta/chessable-patches/compare/v1.0.0...v1.1.0) (2026-09-25)\n\n### ✨ New Features\n\n* enable offline course study for non-PRO accounts ([#3](https://github.com/JCapretta/chessable-patches/issues/3)) ([de6e758](https://github.com/JCapretta/chessable-patches/commit/de6e758c80deb1a2fa1fe700edb0073de41e638b))",
-  "download_url": "https://github.com/JCapretta/chessable-patches/releases/download/v1.1.0/patches-1.1.0.mpp",
+  "created_at": "2026-09-25T02:29:54",
+  "description": "## [1.2.0](https://github.com/JCapretta/chessable-patches/compare/v1.1.0...v1.2.0) (2026-09-25)\n\n### ✨ New Features\n\n* enable offline downloads for owned course videos ([#5](https://github.com/JCapretta/chessable-patches/issues/5)) ([6dacffd](https://github.com/JCapretta/chessable-patches/commit/6dacffd912e232db4c3a8613c01ff353e895e1a3))",
+  "download_url": "https://github.com/JCapretta/chessable-patches/releases/download/v1.2.0/patches-1.2.0.mpp",
   "signature_download_url": "",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }
