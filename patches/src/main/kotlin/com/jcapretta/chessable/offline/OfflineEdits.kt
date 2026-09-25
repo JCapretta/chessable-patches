@@ -29,6 +29,14 @@ internal object OfflineEdits {
         edit("Offline course download", 0x7ca86a, "2e010004", "78017801"),
         // DownloadCourseItem: r12 is true immediately before this Not instruction.
         edit("Offline download badge", 0x7ca5af, "0b0808", "0b080c"),
+        // Video DownloadControls: retain disabled/network/download-state checks,
+        // while using the native full-width button without the PRO badge.
+        edit("Offline video controls", 0x74c461, "3708000b08eb", "780878087808"),
+        // startDownload: enter the existing quality selection and Wi-Fi checks.
+        // Video URLs still come from the account's authorized course response.
+        edit("Offline video download", 0x7505e1, "2e03040a", "78037803"),
+        // OfflinePlaceholder: show the existing download-while-online guidance.
+        edit("Offline video placeholder", 0x74c08d, "370c0002b5c5", "780c780c780c"),
     )
 
     fun apply(bundle: ByteArray): ByteArray = ChessableEdits.apply(bundle, edits)

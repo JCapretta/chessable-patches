@@ -12,7 +12,7 @@ The patches restore native folder reviews, the existing random/sequential review
 
 Open a folder containing due reviews and tap **Review Folder**. During review, use the board settings' **Review All is randomized** switch to mix courses. The native preference is shared with global Review All; its default is unchanged.
 
-With **Enable offline mode**, sign in online, open an owned course's three-dot menu, and select **Download course**. Wait for the downloaded checkmark before disconnecting. Downloaded courses support offline MoveTrainer learning and review; reconnect with the app open to sync progress. **Delete Download** removes the local copy. This patch covers course study, not video downloads. See [offline behavior and test evidence](docs/offline-mode.md).
+With **Enable offline mode**, sign in online, open an owned course's three-dot menu, and select **Download course**. Download videos separately with **Download Video** beneath the chapter player. Wait for each download to finish before disconnecting. Downloaded courses support offline MoveTrainer learning and review; reconnect with the app open to sync progress. The native download controls support pause, resume, and removal. Video access still requires the course's existing video entitlement. See [offline behavior and test evidence](docs/offline-mode.md).
 
 Development bundles are available in successful GitHub Actions runs. They are test artifacts, not verified releases. Unsupported or previously modified bundles fail with an explanation.
 

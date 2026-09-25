@@ -47,6 +47,9 @@ class OfflineEditsTest {
             "Offline course page" to 1,
             "Offline status banner" to 0,
             "Offline course download" to 1,
+            "Offline video controls" to 8,
+            "Offline video download" to 3,
+            "Offline video placeholder" to 12,
         )) {
             val code = edit(name).replacement
             assertEquals(edit(name).original.size, code.size)

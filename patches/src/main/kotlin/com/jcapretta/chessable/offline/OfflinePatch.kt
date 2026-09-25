@@ -10,7 +10,7 @@ import com.jcapretta.chessable.folders.FolderReviewEdits
 @Suppress("unused")
 val offlinePatch = rawResourcePatch(
     name = "Enable offline mode",
-    description = "Download owned courses for offline study using Chessable's native storage and progress sync.",
+    description = "Download owned courses and accessible course videos for offline study using Chessable's native storage and progress sync.",
 ) {
     compatibleWith(
         Compatibility(
