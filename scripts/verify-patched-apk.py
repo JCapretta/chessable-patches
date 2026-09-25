@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Audit a Morphe-produced APK without retaining app code in the repository."""
 import hashlib
+import argparse
 from pathlib import Path
 import re
 import struct
@@ -13,10 +14,14 @@ def check(condition, message):
         raise ValueError(message)
 
 
-def verify(original_path, patched_path):
-    source = (Path(__file__).resolve().parents[1] /
-              'patches/src/main/kotlin/com/jcapretta/chessable/folders/FolderReviewEdits.kt').read_text()
+def verify(original_path, patched_path, patches=('folder-reviews',)):
+    root = (Path(__file__).resolve().parents[1] /
+            'patches/src/main/kotlin/com/jcapretta/chessable')
+    sources = {'folder-reviews': root / 'folders/FolderReviewEdits.kt',
+               'offline-mode': root / 'offline/OfflineEdits.kt'}
+    source = sources['folder-reviews'].read_text()
     expected_hash = re.search(r'ORIGINAL_SHA256 = "([0-9a-f]+)"', source).group(1)
+    source = '\n'.join(sources[name].read_text() for name in patches)
     edits = re.findall(r'edit\("([^"]+)", (0x[0-9a-f]+), "([0-9a-f]+)", "([0-9a-f]+)"\)', source)
     check(edits, 'No declared edits found')
     with zipfile.ZipFile(original_path) as original_zip, zipfile.ZipFile(patched_path) as patched_zip:
@@ -40,9 +45,13 @@ def verify(original_path, patched_path):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        sys.exit('Usage: verify-patched-apk.py ORIGINAL.apk PATCHED.apk')
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('original')
+    parser.add_argument('patched')
+    parser.add_argument('--patches', nargs='+', choices=('folder-reviews', 'offline-mode'),
+                        default=['folder-reviews'])
+    args = parser.parse_args()
     try:
-        verify(*sys.argv[1:])
+        verify(args.original, args.patched, args.patches)
     except (ValueError, OSError, KeyError, zipfile.BadZipFile) as error:
         sys.exit(f'FAIL: {error}')

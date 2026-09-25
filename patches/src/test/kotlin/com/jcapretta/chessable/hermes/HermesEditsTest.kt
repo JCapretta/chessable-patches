@@ -102,4 +102,38 @@ class HermesEditsTest {
         val partial = checksum(original.copyOf().also { edit.replacement.copyInto(it, edit.offset) })
         assertContentEquals(patch.apply(original), patch.apply(partial))
     }
+
+    @Test
+    fun `independent patches compose in either order without enabling siblings`() {
+        val original = fixture()
+        val second = edit.copy(name = "second", offset = 180, original = byteArrayOf(0, 0, 0))
+        val recognized = listOf(edit, second)
+        val sha = original.digest("SHA-256").joinToString("") { "%02x".format(it) }
+        val firstPatch = HermesEdits(sha, listOf(edit), recognized)
+        val secondPatch = HermesEdits(sha, listOf(second), recognized)
+        val firstOnly = firstPatch.apply(original)
+        val secondOnly = secondPatch.apply(original)
+        assertContentEquals(second.original, firstOnly.copyOfRange(180, 183))
+        assertContentEquals(edit.original, secondOnly.copyOfRange(160, 163))
+        val combined = secondPatch.apply(firstOnly)
+        assertContentEquals(combined, firstPatch.apply(secondOnly))
+        assertContentEquals(combined, firstPatch.apply(secondPatch.apply(combined)))
+        assertContentEquals(patch(original, recognized).apply(original), combined)
+    }
+
+    @Test
+    fun `sibling recognition still rejects foreign edits and invalid declarations`() {
+        val original = fixture()
+        val second = edit.copy(name = "second", offset = 180, original = byteArrayOf(0, 0, 0))
+        val sha = original.digest("SHA-256").joinToString("") { "%02x".format(it) }
+        val selected = HermesEdits(sha, listOf(edit), listOf(edit, second))
+        val foreign = checksum(selected.apply(original).also { it[200] = 42 })
+        assertFailsWith<IllegalArgumentException> { selected.apply(foreign) }
+        assertFailsWith<IllegalArgumentException> {
+            HermesEdits(sha, listOf(second), listOf(edit)).apply(original)
+        }
+        assertFailsWith<IllegalArgumentException> {
+            HermesEdits(sha, listOf(edit), listOf(edit, second.copy(offset = 161))).apply(original)
+        }
+    }
 }

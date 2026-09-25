@@ -4,13 +4,15 @@ Focused Android usability patches for Chessable, distributed as a third-party Mo
 
 Authenticated non-PRO folder review and server-persistence checks passed on Android 15. See [test evidence and coverage limits](docs/testing.md).
 
-The first patch restores native folder reviews and the existing random/sequential review setting on Chessable 3.0.4 (118333). It reviews due material using the app's own scheduling and progress tracking.
+The patches restore native folder reviews, the existing random/sequential review setting, and course downloads for offline study on Chessable 3.0.4 (118333). They use the app's own scheduling and progress tracking.
 
 ## Installation
 
-[Add this source to Morphe](https://morphe.software/add-source?github=JCapretta/chessable-patches), select the supported original Chessable APK, and enable **Enable folder reviews**.
+[Add this source to Morphe](https://morphe.software/add-source?github=JCapretta/chessable-patches), select the supported original Chessable APK, and select the patches you want.
 
 Open a folder containing due reviews and tap **Review Folder**. During review, use the board settings' **Review All is randomized** switch to mix courses. The native preference is shared with global Review All; its default is unchanged.
+
+With **Enable offline mode**, sign in online, open an owned course's three-dot menu, and select **Download course**. Wait for the downloaded checkmark before disconnecting. Downloaded courses support offline MoveTrainer learning and review; reconnect with the app open to sync progress. **Delete Download** removes the local copy. This patch covers course study, not video downloads. See [offline behavior and test evidence](docs/offline-mode.md).
 
 Development bundles are available in successful GitHub Actions runs. They are test artifacts, not verified releases. Unsupported or previously modified bundles fail with an explanation.
 
