@@ -29,7 +29,7 @@ The bundle is written to `patches/build/libs/`. Follow [AGENTS.md](AGENTS.md) fo
 ## Patch catalogue
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0](https://github.com/JCapretta/chessable-patches/releases/tag/v1.1.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;2 patches total
+> **[v1.2.0](https://github.com/JCapretta/chessable-patches/releases/tag/v1.2.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;2 patches total
 <details open>
 <summary>📦 Chessable&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -42,7 +42,7 @@ The bundle is written to `patches/build/libs/`. Follow [AGENTS.md](AGENTS.md) fo
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Enable folder reviews](#enable-folder-reviews) | Review due material across a folder using Chessable's native random or sequential order. |  |
-| [Enable offline mode](#enable-offline-mode) | Download owned courses for offline study using Chessable's native storage and progress sync. |  |
+| [Enable offline mode](#enable-offline-mode) | Download owned courses and accessible course videos for offline study using Chessable's native storage and progress sync. |  |
 
 </details>
 
