@@ -1,7 +1,7 @@
 package com.jcapretta.chessable.folders
 
+import com.jcapretta.chessable.hermes.ChessableEdits
 import com.jcapretta.chessable.hermes.HermesEdit
-import com.jcapretta.chessable.hermes.HermesEdits
 import com.jcapretta.chessable.hermes.hexBytes
 
 /** See docs/patch-design.md for disassembly anchors and branch semantics. */
@@ -25,9 +25,7 @@ internal object FolderReviewEdits {
         edit("Folder navigation", 0x7afb89, "902815", "081515"),
     )
 
-    private val patch = HermesEdits(ORIGINAL_SHA256, edits)
-
-    fun apply(bundle: ByteArray): ByteArray = patch.apply(bundle)
+    fun apply(bundle: ByteArray): ByteArray = ChessableEdits.apply(bundle, edits)
 
     private fun edit(name: String, offset: Int, before: String, after: String) =
         HermesEdit(name, offset, before.hexBytes(), after.hexBytes())

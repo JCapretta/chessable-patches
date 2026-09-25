@@ -1,5 +1,10 @@
 # Testing
 
+Offline course download, disconnected study, restart persistence, and automatic
+server synchronization have separate [acceptance evidence](offline-mode.md).
+The current local suite passes 17 tests; the folder-only results below remain
+the historical acceptance record for that patch.
+
 ## Current evidence
 
 - Original 3.0.4 APK installs and launches on a fresh headless Android 15 ARM64 emulator.

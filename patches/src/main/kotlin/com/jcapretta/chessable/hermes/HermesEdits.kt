@@ -23,6 +23,7 @@ internal data class HermesEdit(
 internal class HermesEdits(
     private val originalSha256: String,
     private val edits: List<HermesEdit>,
+    private val recognizedEdits: List<HermesEdit> = edits,
 ) {
     fun apply(input: ByteArray): ByteArray {
         require(input.size >= 128 + 20) { "Truncated Hermes bundle" }
@@ -37,7 +38,8 @@ internal class HermesEdits(
             .contentEquals(input.copyOfRange(footer, input.size))) { "Invalid Hermes checksum" }
 
         var end = 128
-        for (edit in edits.sortedBy { it.offset }) {
+        require(edits.all { it in recognizedEdits }) { "Selected edits must be recognized" }
+        for (edit in recognizedEdits.sortedBy { it.offset }) {
             require(edit.original.isNotEmpty() && edit.original.size == edit.replacement.size) {
                 "${edit.name}: edits must preserve instruction size"
             }
@@ -53,7 +55,7 @@ internal class HermesEdits(
 
         // Normalize only our known edits to recognize repeated application safely.
         val normalized = input.copyOf()
-        edits.forEach { it.original.copyInto(normalized, it.offset) }
+        recognizedEdits.forEach { it.original.copyInto(normalized, it.offset) }
         updateChecksum(normalized)
         require(normalized.digest("SHA-256").contentEquals(originalSha256.hexBytes())) {
             "Unsupported Chessable bundle. Expected 3.0.4 (118333); other builds or bundle patches need review."
